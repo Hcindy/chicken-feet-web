@@ -1,0 +1,26 @@
+stages:
+  - sync
+
+sync_github:
+  stage: sync
+  image: "git"
+  tags:
+    - shared
+  script:
+    - rm -rf .git
+    - mkdir .local
+    - cp -r * .local/
+    - sed -i 's#- git clone https://github.com/Hcindy/chicken-feet-web.git
+    - sed -i 's#- git config user\.email.*#- git config user\.email xxx#' .gitlab-ci.yml
+    - mv .local local
+    - git clone https://github.com/Hcindy/chicken-feet-web.git
+    - cd chicken-feet-web
+    - git config user.email xxx
+    - git config user.name "Hcindy"
+    - git rm -r *
+    - git commit -m "clear"
+    - cp -r ../local/* .
+    - cp ../.gitlab-ci.yml .
+    - git add .
+    - git commit -m "update"
+    - git push
