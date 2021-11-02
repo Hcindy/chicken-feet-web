@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/manage-game']">
+        取消
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">新游戏</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="submit()">
+        提交
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">游戏名称</ion-label>
+    <ion-input placeholder="8位以内的中文、英文或数字" autofocus clearInput name="name" [pattern]="usernameReg" [(ngModel)]="game.name"
+      #name="ngModel" >
+    </ion-input>
+  </ion-item>
+</ion-content>

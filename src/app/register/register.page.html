@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="end">
+      <ion-button [disabled]="username.pristine || username.invalid" (click)="submit()">
+        提交
+      </ion-button>
+    </ion-buttons>
+    <ion-title>注册</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">用户名</ion-label>
+    <ion-input placeholder="8位以内的中文、英文或数字" autofocus clearInput name="username" [pattern]="usernameReg" [(ngModel)]="account.username"
+      #username="ngModel" >
+    </ion-input>
+  </ion-item>
+</ion-content>

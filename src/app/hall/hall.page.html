@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="logout()">
+        登出
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">鸡市场</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refresh()">
+        刷新
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-newgame *ngIf="segment.value === 'newgame'"></app-newgame>
+  <app-overedgame *ngIf="segment.value === 'overedgame'"></app-overedgame>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-segment #segment value="newgame">
+      <ion-segment-button value="newgame">
+        新游戏
+      </ion-segment-button>
+      <ion-segment-button value="overedgame">
+        已完成
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
