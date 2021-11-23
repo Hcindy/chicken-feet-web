@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/waiting"></ion-back-button>
+    </ion-buttons>
+    <ion-title>总奖池</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="padding-top-0">
+    <ion-list-header class="ion-header-tip" lines="none" color="light">
+      <div class="ion-margin-end">名称/数量/面额</div>
+      <div>{{statistic.nameTotal + "/" + statistic.amountTotal + "/" + statistic.worthTotal}}</div>
+    </ion-list-header>
+
+    <ng-container *ngFor="let bonus of bonuses">
+      <ion-item-divider>
+        <ion-label>名称：{{bonus.name}}</ion-label>
+      </ion-item-divider>
+    
+      <ion-item><ion-label>数量：{{bonus.amount}}</ion-label></ion-item>
+      <ion-item><ion-label>面额：{{bonus.worth}}</ion-label></ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

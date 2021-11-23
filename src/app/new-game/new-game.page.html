@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/manage-game']">取消</ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">新游戏</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="loading" (click)="submit()">提交</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">游戏名称</ion-label>
+    <ion-input
+      autofocus
+      clearInput
+      placeholder="8位以内的中文、英文或数字"
+      name="name"
+      #name="ngModel"
+      [(ngModel)]="game.name"
+      [pattern]="gameNameReg"
+    >
+    </ion-input>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row *ngFor="let bonuse of game.bonuses; let i = index">
+      <ion-col size="12" size-lg>
+        <ion-item>
+          <ion-label position="floating">{{i+1}}、奖励名称</ion-label>
+          <ion-input
+            clearInput
+            placeholder="8位以内的中文、英文或数字"
+            name="bonuseName"
+            #bonuseName="ngModel"
+            [(ngModel)]="bonuse.name"
+            [pattern]="bonuseNameReg"
+            (ionChange)="onIonChange(i)"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" size-lg>
+        <ion-item>
+          <ion-label position="floating">奖励数量</ion-label>
+          <ion-input
+            clearInput
+            placeholder="大于0的整数"
+            name="bonuseAmount"
+            #bonuseAmount="ngModel"
+            [(ngModel)]="bonuse.amount"
+            [pattern]="bonuseAmountReg"
+            (ionChange)="onIonChange(i)"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" size-lg>
+        <ion-item>
+          <ion-label position="floating">奖励面额</ion-label>
+          <ion-input
+            clearInput
+            placeholder="最多两位小数"
+            name="bonuseWorth"
+            #bonuseWorth="ngModel"
+            [(ngModel)]="bonuse.worth"
+            [pattern]="bonuseWorthReg"
+            (ionChange)="onIonChange(i)"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">开始时间</ion-label>
+      <ion-datetime
+        #startTime
+        displayFormat="YYYY-MM-DD HH:mm"
+        [value]="getIsoStartTime()"
+        (ionChange)="onStartTimeChange(startTime.value)"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">结束时间</ion-label>
+      <ion-datetime
+        #endTime
+        displayFormat="YYYY-MM-DD HH:mm"
+        [value]="getIsoEndTime()"
+        (ionChange)="onEndTimeChange(endTime.value)"
+      ></ion-datetime>
+    </ion-item>
+  </ion-list>
+</ion-content>
